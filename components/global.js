@@ -15,7 +15,7 @@ export const StyledTittle = styled.h2`
   }
 `;
 
-export const StyledSubTittle = styled.h5`
+export const StyledTitle = styled.h5`
   margin: ${({ margin }) => margin || "0"};
   padding: ${({ padding }) => padding || "0"};
   font-size: 30px;

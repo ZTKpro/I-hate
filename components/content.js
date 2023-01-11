@@ -8,14 +8,14 @@ import Logo from "./assets/logo.png";
 import MenuItems from "./data/menuItems";
 
 const StyledWrapper = styled.main`
-  height: 100vh;
+  min-height: 100vh;
   width: 100vw;
   display: flex;
   text-align: ${({ align }) => align || "left"};
 `;
 
 const StyledMenu = styled.nav`
-  height: 100vh;
+  min-height: 100%;
   width: 300px;
   box-shadow: 0px 0px 15px 0px rgba(26, 175, 252, 1);
   text-align: center;
@@ -112,7 +112,7 @@ function MenuItem({ title, items }) {
       {isCollapsed && (
         <StyledCollapse>
           {items.map((item) => (
-            <StyledLinkItem item href={item.url}>
+            <StyledLinkItem item href={item.url} key={item.url}>
               {item.title}
             </StyledLinkItem>
           ))}

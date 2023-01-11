@@ -4,7 +4,7 @@ import Tech from "../components/data/tech";
 
 import Content from "../components/content";
 import {
-  StyledTittle,
+  StyledTitle,
   StyledText,
   StyledFlex,
   StyledImage,
@@ -20,7 +20,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Content>
-        <StyledTittle>About page</StyledTittle>
+        <StyledTitle>About page</StyledTitle>
         <StyledText margin="20px 0">
           Website to show my technical skills
         </StyledText>
@@ -38,6 +38,7 @@ export default function Home() {
               src={tech.image}
               width={50}
               height={50}
+              key={tech.id}
             />
           ))}
         </StyledFlex>

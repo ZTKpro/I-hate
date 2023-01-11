@@ -1,18 +1,12 @@
 const MenuItems = [
   {
     id: 1,
-    title: "Second",
-    url: "/",
+    title: "AI",
     items: [
       {
         id: 1,
-        title: "Item 1",
-        url: "/",
-      },
-      {
-        id: 2,
-        title: "Item 2",
-        url: "/",
+        title: "Detector",
+        url: "/ai/detector",
       },
     ],
   },
