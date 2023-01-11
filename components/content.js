@@ -62,8 +62,8 @@ const StyledMenuItems = styled.div`
 `;
 
 const StyledLinkItem = styled(Link)`
-  margin: 10px auto;
-
+  margin: 10px 0 10px 10px;
+  text-align: left;
   opacity: ${({ item }) => (item ? "0.9" : "1")};
   &:hover {
     cursor: pointer;
@@ -76,11 +76,19 @@ const StyledCollapse = styled.div`
   flex-direction: column;
 `;
 
-const StyledCollapseBtn = styled.p`
+const StyledWrapperMenu = styled.div`
+  margin: 0 auto;
+  width: 80%;
+`;
+
+const StyledCollapseBtn = styled.div`
+  text-align: left;
   margin: 10px auto;
+  display: flex;
+  justify-content: start;
+  color: ${({ isOpen }) => (isOpen ? "#1aaffc" : "white")};
   &:hover {
     cursor: pointer;
-    color: #1aaffc;
   }
 `;
 
@@ -104,21 +112,30 @@ const StyledBlockMobile = styled.div`
 
 function MenuItem({ title, items }) {
   const [isCollapsed, setIsCollapsed] = useState(false);
+
   return (
-    <>
-      <StyledCollapseBtn onClick={() => setIsCollapsed(!isCollapsed)}>
-        {title}
+    <StyledWrapperMenu>
+      <StyledCollapseBtn
+        onClick={() => setIsCollapsed(!isCollapsed)}
+        isOpen={isCollapsed}
+      >
+        <p>{title}</p>
       </StyledCollapseBtn>
       {isCollapsed && (
-        <StyledCollapse>
+        <StyledCollapse isOpen={isCollapsed}>
           {items.map((item) => (
-            <StyledLinkItem item href={item.url} key={item.url}>
+            <StyledLinkItem
+              item
+              href={item.url}
+              key={item.url}
+              target={item.url.includes("http") ? "_blank" : "_self"}
+            >
               {item.title}
             </StyledLinkItem>
           ))}
         </StyledCollapse>
       )}
-    </>
+    </StyledWrapperMenu>
   );
 }
 export default function Content({ children, align }) {
