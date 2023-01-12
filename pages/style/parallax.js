@@ -6,7 +6,8 @@ import Content from "../../components/content";
 import Bubble from "../../components/bubble";
 
 const StyledHeight = styled.div`
-  height: 500vh;
+  position: relative;
+  height: 200vh;
 `;
 
 const StyledTitle = styled.h4`
@@ -33,6 +34,13 @@ export default function Parrallax() {
     setScrollPosition(position);
   };
 
+  function isNegative(num) {
+    if (Math.sign(num) === -1) {
+      return true;
+    }
+    return false;
+  }
+
   useEffect(() => {
     window.addEventListener("scroll", handleScroll, { passive: true });
 
@@ -47,7 +55,8 @@ export default function Parrallax() {
 
     if (type === "horizontal") {
       left = startPosition.left + scrollPosition / params;
-      if (left > limit) left = limit;
+      if (!isNegative(params) && left > limit) left = limit;
+      if (isNegative(params) && left < limit) left = limit;
     }
 
     if (type === "vertical") {
@@ -65,34 +74,39 @@ export default function Parrallax() {
     <Content padding="0 0 0 10px">
       <StyledHeight>
         <StyledTitle
-          {...parallaxEffect({ top: 1200, left: 570 }, "horizontal", 12)}
+          {...parallaxEffect({ top: 1200, left: -200 }, "horizontal", 0.8, 500)}
         >
           Parallax
         </StyledTitle>
         <StyledText
-          {...parallaxEffect({ top: 1300, left: 350 }, "horizontal", 12)}
+          {...parallaxEffect(
+            { top: 1300, left: 1200 },
+            "horizontal",
+            -0.8,
+            300
+          )}
         >
           Parallax is a displacement or difference in the apparent position of
           an object viewed along two different lines of sight and is measured by
           the angle or semi-angle of inclination between those two lines.
         </StyledText>
+        <Bubble
+          size={200}
+          position="absolute"
+          {...parallaxEffect({ top: 140, left: 500 }, "horizontal", 0.5)}
+        />
+        <Bubble
+          size={200}
+          position="absolute"
+          {...parallaxEffect({ top: 390, left: 500 }, "vertical", 1.3, 900)}
+          inside
+        />
+        <Bubble
+          size={200}
+          position="absolute"
+          {...parallaxEffect({ top: 630, left: 500 }, "horizontal", -0.5)}
+        />
       </StyledHeight>
-      <Bubble
-        size={200}
-        position="absolute"
-        {...parallaxEffect({ top: 140, left: 600 }, "horizontal", 5)}
-      />
-      <Bubble
-        size={200}
-        position="absolute"
-        {...parallaxEffect({ top: 390, left: 600 }, "vertical", 5)}
-        inside
-      />
-      <Bubble
-        size={200}
-        position="absolute"
-        {...parallaxEffect({ top: 630, left: 600 }, "horizontal", 5)}
-      />
     </Content>
   );
 }

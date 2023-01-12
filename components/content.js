@@ -9,11 +9,12 @@ import MenuItems from "./data/menuItems";
 import Bubble from "./bubble";
 
 const StyledWrapper = styled.main`
-  overflow: ${({ overflow }) => overflow || "auto"};
+  overflow-x: hidden;
   position: relative;
   min-height: 100vh;
   width: 100vw;
   display: flex;
+  overflow-y: ${({ overflow }) => overflow || "auto"};
   text-align: ${({ align }) => align || "left"};
 `;
 
