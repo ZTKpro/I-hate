@@ -7,7 +7,7 @@ import Bubble from "../../components/bubble";
 
 const StyledHeight = styled.div`
   position: relative;
-  height: 200vh;
+  height: 180vh;
 `;
 
 const StyledTitle = styled.h4`
@@ -93,17 +93,20 @@ export default function Parrallax() {
         <Bubble
           size={200}
           position="absolute"
+          transition="1.5s"
           {...parallaxEffect({ top: 140, left: 500 }, "horizontal", 0.5)}
         />
         <Bubble
           size={200}
           position="absolute"
+          transition="1.5s"
           {...parallaxEffect({ top: 390, left: 500 }, "vertical", 1.3, 900)}
           inside
         />
         <Bubble
           size={200}
           position="absolute"
+          transition="1.5s"
           {...parallaxEffect({ top: 630, left: 500 }, "horizontal", -0.5)}
         />
       </StyledHeight>

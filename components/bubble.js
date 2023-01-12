@@ -7,6 +7,7 @@ const StyledWrappr = styled.div`
   left: ${({ left }) => left || "0"};
   height: ${({ size }) => size}px;
   width: ${({ size }) => size}px;
+  transition: ${({ transition }) => transition || "0.3s"};
 
   display: flex;
   align-items: center;
