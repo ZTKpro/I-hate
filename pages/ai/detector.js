@@ -136,7 +136,7 @@ export default function ObjectDetector(props) {
   };
 
   return (
-    <Content>
+    <Content overflow="hidden">
       <DetectorContainer>
         {imgData && <TargetImg src={imgData} ref={imageRef} />}
         {!isEmptyPredictions &&

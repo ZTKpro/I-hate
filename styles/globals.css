@@ -13,9 +13,9 @@ body {
 }
 
 body {
-  background-image: url("../components/assets/bg.png");
-  background-size: cover;
+  background-size: contain;
   color: white;
+  background-color: black;
 }
 
 a {

@@ -5,7 +5,6 @@ import styled from "styled-components";
 export const StyledTittle = styled.h2`
   margin: ${({ margin }) => margin || "0"};
   padding: ${({ padding }) => padding || "0"};
-
   font-size: 50px;
 
   span {

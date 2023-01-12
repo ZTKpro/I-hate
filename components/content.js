@@ -6,8 +6,11 @@ import styled from "styled-components";
 
 import Logo from "./assets/logo.png";
 import MenuItems from "./data/menuItems";
+import Bubble from "./bubble";
 
 const StyledWrapper = styled.main`
+  overflow: ${({ overflow }) => overflow || "auto"};
+  position: relative;
   min-height: 100vh;
   width: 100vw;
   display: flex;
@@ -15,8 +18,10 @@ const StyledWrapper = styled.main`
 `;
 
 const StyledMenu = styled.nav`
+  z-index: 5;
+  background-color: black;
   min-height: 100%;
-  width: 300px;
+  min-width: 300px;
   box-shadow: 0px 0px 15px 0px rgba(26, 175, 252, 1);
   text-align: center;
 `;
@@ -54,7 +59,8 @@ const StyledTitle = styled.p`
 `;
 
 const StyledContent = styled.section`
-  padding: 50px;
+  position: relative;
+  padding: ${({ padding }) => padding || "50px"};
 `;
 
 const StyledMenuItems = styled.div`
@@ -138,9 +144,17 @@ function MenuItem({ title, items }) {
     </StyledWrapperMenu>
   );
 }
-export default function Content({ children, align }) {
+export default function Content({ children, align, padding, overflow }) {
   return (
-    <StyledWrapper align={align}>
+    <StyledWrapper align={align} overflow={overflow}>
+      <Bubble
+        size={300}
+        top="81vh"
+        left="-150px"
+        position="absolute"
+        zIndex="6"
+      />
+      <Bubble size={800} top="58vh" left="81vw" position="absolute" />
       <StyledMenu>
         <StyledAboutMe>
           <StyledImage src={Logo} alt="logo" />
@@ -155,7 +169,7 @@ export default function Content({ children, align }) {
           ))}
         </StyledMenuItems>
       </StyledMenu>
-      <StyledContent>{children}</StyledContent>
+      <StyledContent padding={padding}>{children}</StyledContent>
       <StyledBlockMobile>
         The website does not work on phones.
       </StyledBlockMobile>

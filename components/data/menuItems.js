@@ -23,7 +23,6 @@ const MenuItems = [
   {
     id: 2,
     title: "Blockchain",
-    url: "/",
     items: [
       {
         id: 1,
@@ -34,20 +33,23 @@ const MenuItems = [
   },
   {
     id: 2,
-    title: "Three.js",
-    url: "/",
+    title: "Style",
     items: [
       {
         id: 1,
         title: "3D show",
         url: "/",
       },
+      {
+        id: 2,
+        title: "Parallax",
+        url: "/style/parallax",
+      },
     ],
   },
   {
     id: 2,
     title: "Another",
-    url: "/",
     items: [
       {
         id: 1,
