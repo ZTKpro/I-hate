@@ -30,7 +30,7 @@ const MenuItems = [
     items: [
       {
         title: "3D configurator",
-        url: "/style/configurator",
+        url: "https:/ds-3d-configurator.netlify.app",
       },
       {
         title: "Parallax",
