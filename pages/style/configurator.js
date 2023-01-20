@@ -1,5 +1,4 @@
 import React, { Suspense, useRef, useState, useEffect } from "react";
-import { Canvas, useFrame } from "react-three-fiber";
 import { ContactShadows, Environment, useGLTF, OrbitControls } from "drei";
 import { HexColorPicker } from "react-colorful";
 import { proxy, useProxy } from "valtio";
@@ -21,6 +20,8 @@ const state = proxy({
 });
 
 function Shoe() {
+  React.useEffect(() => import("@react-three/fiber"), []);
+
   const ref = useRef();
   const snap = useProxy(state);
   // Drei's useGLTF hook sets up draco automatically, that's how it differs from useLoader(GLTFLoader, url)
@@ -117,7 +118,10 @@ function Picker() {
   );
 }
 
-export default function Configurator() {
+function Configurator() {
+   
+  React.useEffect(() => import("@react-three/fiber"), []);
+
   return (
     <Content padding="0 0 0 10px">
       <>
@@ -158,3 +162,7 @@ export default function Configurator() {
     </Content>
   );
 }
+
+export default configuratorNoSsr(() => Promise.resolve(Configurator), {
+  ssr: false,
+});
