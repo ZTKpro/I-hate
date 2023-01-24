@@ -15,6 +15,7 @@
     "@tensorflow-models/knn-classifier": "^1.2.4",
     "@tensorflow-models/mobilenet": "^2.1.0",
     "@tensorflow/tfjs": "^4.2.0",
+    "axios": "^1.2.3",
     "drei": "^2.2.21",
     "eslint": "8.31.0",
     "eslint-config-next": "13.1.1",

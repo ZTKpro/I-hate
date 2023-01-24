@@ -39,6 +39,15 @@ const MenuItems = [
     ],
   },
   {
+    title: "For me",
+    items: [
+      {
+        title: "Cheat sheet",
+        url: "/for-me/cheat-sheet",
+      },
+    ],
+  },
+  {
     title: "Another",
     items: [
       {

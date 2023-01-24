@@ -62,6 +62,7 @@ const StyledTitle = styled.p`
 const StyledContent = styled.section`
   position: relative;
   padding: ${({ padding }) => padding || "50px"};
+  display: ${({ display }) => display || "block"};
 `;
 
 const StyledMenuItems = styled.div`
@@ -100,6 +101,7 @@ const StyledCollapseBtn = styled.div`
 `;
 
 const StyledBlockMobile = styled.div`
+  z-index: 1000;
   position: absolute;
   top: 0;
   left: 0;
@@ -145,7 +147,13 @@ function MenuItem({ title, items }) {
     </StyledWrapperMenu>
   );
 }
-export default function Content({ children, align, padding, overflow }) {
+export default function Content({
+  children,
+  align,
+  padding,
+  overflow,
+  display,
+}) {
   return (
     <StyledWrapper align={align} overflow={overflow}>
       <Bubble
@@ -170,7 +178,9 @@ export default function Content({ children, align, padding, overflow }) {
           ))}
         </StyledMenuItems>
       </StyledMenu>
-      <StyledContent padding={padding}>{children}</StyledContent>
+      <StyledContent display={display} padding={padding}>
+        {children}
+      </StyledContent>
       <StyledBlockMobile>
         The website does not work on phones.
       </StyledBlockMobile>
