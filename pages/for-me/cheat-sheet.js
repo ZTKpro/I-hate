@@ -24,24 +24,27 @@ export default function CheatSheet() {
         <Tile>
           <h1>Last 7 day</h1>
         </Tile>
+        <Tile>
+          <h1>To do:</h1>
+        </Tile>
       </StyledRow>
       <StyledH2>Copier</StyledH2>
       <StyledRow>
         <Tile padding="10px">
           <div>
             <Tile padding="10px">
-              <p>pln</p>
+              <p>Pl</p>
             </Tile>
             <Tile padding="10px">
-              <p>en</p>
+              <p>En</p>
             </Tile>
           </div>
           <div>
             <Tile padding="10px">
-              <p>link</p>
+              <p>Link</p>
             </Tile>
             <Tile padding="10px">
-              <p>git</p>
+              <p>Git</p>
             </Tile>
           </div>
         </Tile>

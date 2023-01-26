@@ -174,7 +174,7 @@ export default function Content({
         </StyledAboutMe>
         <StyledMenuItems>
           {MenuItems.map((item) => (
-            <MenuItem key={item.id} {...item} />
+            <MenuItem key={item.title} {...item} />
           ))}
         </StyledMenuItems>
       </StyledMenu>
