@@ -102,7 +102,6 @@ export default function ObjectDetector(props) {
     const predictions = await model.detect(imageElement, 6);
     const normalizedPredictions = normalizePredictions(predictions, imgSize);
     setPredictions(normalizedPredictions);
-    console.log("Predictions: ", predictions);
   };
 
   const readImage = (file) => {

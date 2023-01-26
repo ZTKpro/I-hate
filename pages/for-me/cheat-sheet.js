@@ -30,6 +30,7 @@ ChartJS.register(
 import Content from "../../components/content";
 import Tile from "../../components/tile";
 import { en, pl, link, git } from "../../components/data/textToCopy";
+import { currencyPair } from "../../components/data/currencyPair";
 
 const StyledRow = styled.div`
   display: flex;
@@ -54,6 +55,7 @@ const StyledInfo = styled.div`
   left: 50%;
   top: 1%;
   cursor: pointer;
+  transform: translateX(-50%);
   &:hover {
     color: #1aaffc;
   }
@@ -79,7 +81,7 @@ const StyledInput = styled.input`
   padding: 5px 15px;
   font-size: 20px;
   border-radius: 12px;
-  width: 87%;
+  width: 82%;
   background-color: #ffffff80;
   color: white;
 `;
@@ -105,12 +107,11 @@ const StyledToDoList = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  width: 580px;
+  width: 380px;
 `;
 
 const StyledToDoItem = styled.div`
   cursor: pointer;
-
   &:hover {
     color: #1aaffc;
   }
@@ -157,7 +158,7 @@ export default function CheatSheet() {
     const fetchData = async () => {
       const result = await axios({
         method: "get",
-        url: `https://api.twelvedata.com/time_series?start_date=${weekAgo}&outputsize=12&symbol=EUR/PLN,EUR/USD,EUR/CHF,EUR/JPY,EUR/GBP&interval=1day&apikey=${strK2}`,
+        url: `https://api.twelvedata.com/time_series?start_date=${weekAgo}&symbol=EUR/PLN,EUR/USD,EUR/CHF,EUR/JPY,EUR/GBP,XAU/EUR&interval=1day&apikey=${strK2}`,
       });
       setData(result.data);
     };
@@ -168,6 +169,10 @@ export default function CheatSheet() {
   const roundQuotes = (quotes) => {
     if (quotes === undefined) return 0;
     return Math.round(quotes * 100) / 100;
+  };
+
+  const stringQuotes = (quotes) => {
+    return quotes.replace("/", "");
   };
 
   const showTodayPrice = (quotes) => {
@@ -185,8 +190,7 @@ export default function CheatSheet() {
     return "red";
   };
 
-  const chartLabels = ["January", "February", ,];
-
+  const [selecedQuotes, setSelectedQuotes] = useState(currencyPair[0]);
   const options = {
     responsive: true,
     plugins: {
@@ -195,18 +199,20 @@ export default function CheatSheet() {
       },
       title: {
         display: true,
-        text: "Chart.js Line Chart",
+        text: selecedQuotes,
       },
     },
   };
 
   const chartData = {
-    labels: ["January", "February", "March", "April", "May"],
+    labels: data[selecedQuotes]?.values
+      .map((item) => item.datetime.split("-")[2])
+      .reverse(),
     datasets: [
       {
-        data: [10, 20, 30, 40, 50],
-        label: "Sales",
-        borderColor: "#3e95cd",
+        data: data[selecedQuotes]?.values.map((item) => item.close).reverse(),
+        label: selecedQuotes,
+        borderColor: "white",
         fill: false,
       },
     ],
@@ -221,69 +227,43 @@ export default function CheatSheet() {
       <StyledRow>
         <Tile gap="15px" minHeight="250px">
           <div>
-            <Link
-              href="https://pl.tradingview.com/chart/tswqhFJr/?symbol=FX_IDC%3AEURPLN"
-              target="_blank"
-            >
-              <StyledStockText>
-                EUR/PLN: {showTodayPrice("EUR/PLN")}
-              </StyledStockText>
-            </Link>
-            <Link
-              href="https://pl.tradingview.com/chart/tswqhFJr/?symbol=FX_IDC%3AEURUSD"
-              target="_blank"
-            >
-              <StyledStockText>
-                EUR/USD: {showTodayPrice("EUR/USD")}
-              </StyledStockText>
-            </Link>
-            <Link
-              href="https://pl.tradingview.com/chart/tswqhFJr/?symbol=FX_IDC%3AEURCHF"
-              target="_blank"
-            >
-              <StyledStockText>
-                EUR/CHF: {showTodayPrice("EUR/CHF")}
-              </StyledStockText>
-            </Link>
-            <Link
-              href="https://pl.tradingview.com/chart/tswqhFJr/?symbol=FX_IDC%EURJPY"
-              target="_blank"
-            >
-              <StyledStockText>
-                EUR/JPY: {showTodayPrice("EUR/JPY")}
-              </StyledStockText>
-            </Link>
-            <Link
-              href="https://pl.tradingview.com/chart/tswqhFJr/?symbol=FX_IDC%EURGBP"
-              target="_blank"
-            >
-              <StyledStockText>
-                EUR/GBP: {showTodayPrice("EUR/GBP")}
-              </StyledStockText>
-            </Link>
+            {currencyPair.map((item) => (
+              <Link
+                href={`https://pl.tradingview.com/chart/tswqhFJr/?symbol=${stringQuotes(
+                  item
+                )}`}
+                target="_blank"
+                key={item}
+              >
+                <StyledStockText>
+                  {item}: {showTodayPrice(item)}
+                </StyledStockText>
+              </Link>
+            ))}
           </div>
           <div>
-            <StyledStockText color={showPriceDiff("EUR/PLN")}>
-              {showWeekPrice("EUR/PLN")}
-            </StyledStockText>
-            <StyledStockText color={showPriceDiff("EUR/USD")}>
-              {showWeekPrice("EUR/USD")}
-            </StyledStockText>
-            <StyledStockText color={showPriceDiff("EUR/CHF")}>
-              {showWeekPrice("EUR/CHF")}
-            </StyledStockText>
-            <StyledStockText color={showPriceDiff("EUR/JPY")}>
-              {showWeekPrice("EUR/JPY")}
-            </StyledStockText>
-            <StyledStockText color={showPriceDiff("EUR/GBP")}>
-              {showWeekPrice("EUR/GBP")}
-            </StyledStockText>
+            {currencyPair.map((item) => (
+              <StyledStockText
+                color={showPriceDiff(item)}
+                onClick={() => setSelectedQuotes(item)}
+                key={item}
+              >
+                {showWeekPrice(item)}
+              </StyledStockText>
+            ))}
           </div>
         </Tile>
-        <Tile padding="5px" minHeight="250px" minWidth="450px" display="block">
-          <Line options={options} data={chartData} />
+        <Tile padding="5px" minHeight="250px" minWidth="650px" display="block">
+          <Link
+            href={`https://pl.tradingview.com/chart/tswqhFJr/?symbol=${stringQuotes(
+              selecedQuotes
+            )}`}
+            target="_blank"
+          >
+            <Line options={options} data={chartData} />
+          </Link>
         </Tile>
-        <Tile minHeight="250px" minWidth="500px" display="block">
+        <Tile minHeight="100%" display="block">
           <StyledToDoHeader>
             <StyledInput ref={toDoInput} />
             <StyledAddBtn onClick={addToDo}> + </StyledAddBtn>
@@ -345,7 +325,6 @@ export default function CheatSheet() {
                     "https://xstation5.xtb.com/?branch=pl#/real/loggedIn",
                     "_blank"
                   );
-                  window.open("https://www.fxstreet.com/news", "_blank");
                   window.open(
                     "https://www.valutrades.com/en/blog/common-chart-patterns-a-forex-cheat-sheet",
                     "_blank"
