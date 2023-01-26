@@ -119,6 +119,8 @@ const StyledToDoItem = styled.div`
 
 export default function CheatSheet() {
   const strK2 = "edbe64420f274f4cbdca588eba157a24";
+  // const strK22 = "161a674625c8421184d1293bc24c5fcf";
+
   const weekAgo = dayjs().subtract(14, "days").format("YYYY-MM-DD");
 
   const [data, setData] = useState([]);
@@ -158,7 +160,9 @@ export default function CheatSheet() {
     const fetchData = async () => {
       const result = await axios({
         method: "get",
-        url: `https://api.twelvedata.com/time_series?start_date=${weekAgo}&symbol=EUR/PLN,EUR/USD,EUR/CHF,EUR/JPY,EUR/GBP,XAU/EUR&interval=1day&apikey=${strK2}`,
+        url: `https://api.twelvedata.com/time_series?start_date=${weekAgo}&symbol=${currencyPair.join(
+          ","
+        )}&interval=1day&apikey=${strK2}`,
       });
       setData(result.data);
     };
@@ -176,15 +180,15 @@ export default function CheatSheet() {
   };
 
   const showTodayPrice = (quotes) => {
-    return roundQuotes(data[quotes]?.values[0].close);
+    return roundQuotes(data[quotes]?.values[0]?.close);
   };
 
   const showWeekPrice = (quotes) => {
-    return roundQuotes(data[quotes]?.values[10].close);
+    return roundQuotes(data[quotes]?.values[10]?.close);
   };
 
   const showPriceDiff = (quotes) => {
-    if (data[quotes]?.values[0].close > data[quotes]?.values[10].close)
+    if (data[quotes]?.values[0].close > data[quotes]?.values[10]?.close)
       return "lightGreen";
 
     return "red";
