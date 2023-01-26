@@ -10,6 +10,7 @@ const StyledWrappr = styled.div`
   border: 1px solid #ffffff30;
   border-radius: 10px;
   height: fit-content;
+  gap: ${({ gap }) => gap || "0"};
 
   display: ${({ display }) => display || "flex"};
   flex-direction: ${({ flexDirection }) => flexDirection || "row"};
