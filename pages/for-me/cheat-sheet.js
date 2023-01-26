@@ -101,7 +101,7 @@ export default function CheatSheet() {
   const [weekData, setWeekData] = useState([]);
 
   const toDoInput = useRef(null);
-  const [toDoList, setToDoList] = useState([]);
+  const [toDoList, setToDoList] = useState(["."]);
 
   const [info, setInfo] = useState(null);
 
