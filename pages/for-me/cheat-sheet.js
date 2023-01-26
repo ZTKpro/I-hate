@@ -98,26 +98,23 @@ export default function CheatSheet() {
   const weekAgo = dayjs().subtract(7, "days").format("YYYY-MM-DD");
 
   const [data, setData] = useState([]);
-  const [weekData, setWeekData] = useState([]);
 
   const toDoInput = useRef(null);
   const [toDoList, setToDoList] = useState(["."]);
 
   const [info, setInfo] = useState(null);
 
-  const saveToDo = () => {
-    localStorage.setItem("toDoList", JSON.stringify(toDoList));
-  };
-
   const addToDo = () => {
-    setToDoList([...toDoList, toDoInput.current.value]);
-    toDoInput.current.value = "";
-    saveToDo();
+    if (toDoInput.current.value !== "") {
+      setToDoList([...toDoList, toDoInput.current.value]);
+      toDoInput.current.value = "";
+      localStorage.setItem("toDoList", JSON.stringify(toDoList));
+    }
   };
 
   const removeToDo = (itemToRemove) => {
     setToDoList(toDoList.filter((item) => item !== itemToRemove));
-    saveToDo();
+    localStorage.setItem("toDoList", JSON.stringify(toDoList));
   };
 
   const copyToClipboard = (text) => {
@@ -132,6 +129,7 @@ export default function CheatSheet() {
         setToDoList(toDoListStorage);
       }
     };
+    getToDoList();
 
     const fetchData = async () => {
       const result = await axios(
@@ -146,12 +144,10 @@ export default function CheatSheet() {
           headers: { apikey: strK2 },
         }
       );
-
       setData(result.data);
     };
 
     // fetchData();
-    getToDoList();
   }, []);
 
   const roundQuotes = (quotes) => {
