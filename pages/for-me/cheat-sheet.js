@@ -5,6 +5,28 @@ import Link from "next/link";
 
 import styled from "styled-components";
 
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+} from "chart.js";
+import { Line } from "react-chartjs-2";
+
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend
+);
+
 import Content from "../../components/content";
 import Tile from "../../components/tile";
 import { en, pl, link, git } from "../../components/data/textToCopy";
@@ -40,6 +62,7 @@ const StyledInfo = styled.div`
 const StyledStockText = styled.p`
   margin: 10px 0;
   font-size: 20px;
+  color: ${({ color }) => color || "white"};
   cursor: pointer;
   &:hover {
     color: #1aaffc;
@@ -56,7 +79,7 @@ const StyledInput = styled.input`
   padding: 5px 15px;
   font-size: 20px;
   border-radius: 12px;
-  width: 89%;
+  width: 87%;
   background-color: #ffffff80;
   color: white;
 `;
@@ -82,7 +105,7 @@ const StyledToDoList = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  max-width: 600px;
+  width: 580px;
 `;
 
 const StyledToDoItem = styled.div`
@@ -94,8 +117,8 @@ const StyledToDoItem = styled.div`
 `;
 
 export default function CheatSheet() {
-  const strK2 = "WtwZ7PtrlPKKa3uJlZYPejPVShG44tgQ";
-  const weekAgo = dayjs().subtract(7, "days").format("YYYY-MM-DD");
+  const strK2 = "edbe64420f274f4cbdca588eba157a24";
+  const weekAgo = dayjs().subtract(14, "days").format("YYYY-MM-DD");
 
   const [data, setData] = useState([]);
 
@@ -132,27 +155,61 @@ export default function CheatSheet() {
     getToDoList();
 
     const fetchData = async () => {
-      const result = await axios(
-        {
-          method: "get",
-          url: "https://api.apilayer.com/currency_data/live?source=EUR&currencies=USD,GBP,JPY,CHF,PLN",
-          headers: { apikey: strK2 },
-        },
-        {
-          method: "get",
-          url: `https://api.apilayer.com/currency_data/historical?date=${weekAgo}?source=EUR&currencies=USD,GBP,JPY,CHF,PLN`,
-          headers: { apikey: strK2 },
-        }
-      );
+      const result = await axios({
+        method: "get",
+        url: `https://api.twelvedata.com/time_series?start_date=${weekAgo}&outputsize=12&symbol=EUR/PLN,EUR/USD,EUR/CHF,EUR/JPY,EUR/GBP&interval=1day&apikey=${strK2}`,
+      });
       setData(result.data);
     };
 
-    // fetchData();
+    fetchData();
   }, []);
 
   const roundQuotes = (quotes) => {
     if (quotes === undefined) return 0;
     return Math.round(quotes * 100) / 100;
+  };
+
+  const showTodayPrice = (quotes) => {
+    return roundQuotes(data[quotes]?.values[0].close);
+  };
+
+  const showWeekPrice = (quotes) => {
+    return roundQuotes(data[quotes]?.values[10].close);
+  };
+
+  const showPriceDiff = (quotes) => {
+    if (data[quotes]?.values[0].close > data[quotes]?.values[10].close)
+      return "lightGreen";
+
+    return "red";
+  };
+
+  const chartLabels = ["January", "February", ,];
+
+  const options = {
+    responsive: true,
+    plugins: {
+      legend: {
+        position: "top",
+      },
+      title: {
+        display: true,
+        text: "Chart.js Line Chart",
+      },
+    },
+  };
+
+  const chartData = {
+    labels: ["January", "February", "March", "April", "May"],
+    datasets: [
+      {
+        data: [10, 20, 30, 40, 50],
+        label: "Sales",
+        borderColor: "#3e95cd",
+        fill: false,
+      },
+    ],
   };
 
   return (
@@ -169,7 +226,7 @@ export default function CheatSheet() {
               target="_blank"
             >
               <StyledStockText>
-                EUR/PLN: {roundQuotes(data?.quotes?.EURPLN)}
+                EUR/PLN: {showTodayPrice("EUR/PLN")}
               </StyledStockText>
             </Link>
             <Link
@@ -177,7 +234,7 @@ export default function CheatSheet() {
               target="_blank"
             >
               <StyledStockText>
-                EUR/USD: {roundQuotes(data?.quotes?.EURUSD)}
+                EUR/USD: {showTodayPrice("EUR/USD")}
               </StyledStockText>
             </Link>
             <Link
@@ -185,7 +242,7 @@ export default function CheatSheet() {
               target="_blank"
             >
               <StyledStockText>
-                EUR/CHF: {roundQuotes(data?.quotes?.EURCHF)}
+                EUR/CHF: {showTodayPrice("EUR/CHF")}
               </StyledStockText>
             </Link>
             <Link
@@ -193,7 +250,7 @@ export default function CheatSheet() {
               target="_blank"
             >
               <StyledStockText>
-                EUR/JPY: {roundQuotes(data?.quotes?.EURJPY)}
+                EUR/JPY: {showTodayPrice("EUR/JPY")}
               </StyledStockText>
             </Link>
             <Link
@@ -201,29 +258,32 @@ export default function CheatSheet() {
               target="_blank"
             >
               <StyledStockText>
-                EUR/GBP: {roundQuotes(data?.quotes?.EURGBP)}
+                EUR/GBP: {showTodayPrice("EUR/GBP")}
               </StyledStockText>
             </Link>
           </div>
           <div>
-            <StyledStockText>
-              {roundQuotes(data?.quotes?.EURPLN)}
+            <StyledStockText color={showPriceDiff("EUR/PLN")}>
+              {showWeekPrice("EUR/PLN")}
             </StyledStockText>
-            <StyledStockText>
-              {roundQuotes(data?.quotes?.EURUSD)}
+            <StyledStockText color={showPriceDiff("EUR/USD")}>
+              {showWeekPrice("EUR/USD")}
             </StyledStockText>
-            <StyledStockText>
-              {roundQuotes(data?.quotes?.EURCHF)}
+            <StyledStockText color={showPriceDiff("EUR/CHF")}>
+              {showWeekPrice("EUR/CHF")}
             </StyledStockText>
-            <StyledStockText>
-              {roundQuotes(data?.quotes?.EURJPY)}
+            <StyledStockText color={showPriceDiff("EUR/JPY")}>
+              {showWeekPrice("EUR/JPY")}
             </StyledStockText>
-            <StyledStockText>
-              {roundQuotes(data?.quotes?.EURGBP)}
+            <StyledStockText color={showPriceDiff("EUR/GBP")}>
+              {showWeekPrice("EUR/GBP")}
             </StyledStockText>
           </div>
         </Tile>
-        <Tile minHeight="250px" minWidth="600px" display="block">
+        <Tile padding="5px" minHeight="250px" minWidth="450px" display="block">
+          <Line options={options} data={chartData} />
+        </Tile>
+        <Tile minHeight="250px" minWidth="500px" display="block">
           <StyledToDoHeader>
             <StyledInput ref={toDoInput} />
             <StyledAddBtn onClick={addToDo}> + </StyledAddBtn>
