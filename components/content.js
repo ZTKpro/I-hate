@@ -60,6 +60,8 @@ const StyledTitle = styled.p`
 `;
 
 const StyledContent = styled.section`
+  background-color: ${({ backgroundColor }) =>
+    backgroundColor || "transparent"};
   min-width: ${({ minWidth }) => minWidth || "80%"};
   position: relative;
   padding: ${({ padding }) => padding || "50px"};
@@ -155,6 +157,7 @@ export default function Content({
   overflow,
   display,
   minWidth,
+  backgroundColor,
 }) {
   return (
     <StyledWrapper align={align} overflow={overflow}>
@@ -180,7 +183,12 @@ export default function Content({
           ))}
         </StyledMenuItems>
       </StyledMenu>
-      <StyledContent display={display} padding={padding} minWidth={minWidth}>
+      <StyledContent
+        display={display}
+        padding={padding}
+        minWidth={minWidth}
+        backgroundColor={backgroundColor}
+      >
         {children}
       </StyledContent>
       <StyledBlockMobile>

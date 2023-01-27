@@ -25,6 +25,15 @@ const MenuItems = [
     ],
   },
   {
+    title: "3D",
+    items: [
+      {
+        title: "Shoe configurator",
+        url: "https:/ds-3d-configurator.netlify.app",
+      },
+    ],
+  },
+  {
     title: "Blockchain",
     items: [
       {
@@ -37,12 +46,12 @@ const MenuItems = [
     title: "Style",
     items: [
       {
-        title: "3D configurator",
-        url: "https:/ds-3d-configurator.netlify.app",
-      },
-      {
         title: "Parallax",
         url: "/style/parallax",
+      },
+      {
+        title: "3D text",
+        url: "/style/3d-text",
       },
     ],
   },
