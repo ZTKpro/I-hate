@@ -9,7 +9,7 @@ import * as cocoSsd from "@tensorflow-models/coco-ssd";
 const DetectorContainer = styled.div`
   min-width: 500px;
   height: 500px;
-  border: 3px solid #fff;
+  border: 3px solid #1aaffc;
   border-radius: 5px;
   display: flex;
   align-items: center;
@@ -28,8 +28,8 @@ const HiddenFileInput = styled.input`
 const SelectButton = styled.button`
   padding: 7px 10px;
   border: 2px solid transparent;
-  background-color: #fff;
-  color: #0a0f22;
+  background-color: #1aaffc;
+  color: black;
   font-size: 16px;
   font-weight: 500;
   outline: none;
@@ -38,8 +38,8 @@ const SelectButton = styled.button`
   transition: all 260ms ease-in-out;
   &:hover {
     background-color: transparent;
-    border: 2px solid #fff;
-    color: #fff;
+    border: 2px solid #1aaffc;
+    color: #1aaffc;
   }
 `;
 
@@ -49,12 +49,12 @@ const TargetBox = styled.div`
   top: ${({ y }) => y + "px"};
   width: ${({ width }) => width + "px"};
   height: ${({ height }) => height + "px"};
-  border: 4px solid #1ac71a;
+  border: 4px solid #1aaffc;
   background-color: transparent;
   z-index: 20;
   &::before {
     content: "${({ classType, score }) => `${classType} ${score.toFixed(1)}%`}";
-    color: #1ac71a;
+    color: #1aaffc;
     font-weight: 500;
     font-size: 17px;
     position: absolute;
@@ -135,7 +135,7 @@ export default function ObjectDetector() {
   };
 
   return (
-    <Content overflow="hidden">
+    <Content overflow="hidden" minWidth="0">
       <DetectorContainer>
         {imgData && <TargetImg src={imgData} ref={imageRef} />}
         {!isEmptyPredictions &&
