@@ -4151,6 +4151,11 @@ w3c-xmlserializer@^4.0.0:
   dependencies:
     xml-name-validator "^4.0.0"
 
+wave-visualizer@^1.0.6:
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/wave-visualizer/-/wave-visualizer-1.0.6.tgz#16ba0d6445b9cbb6f7e62c4ad669af46cd011c39"
+  integrity sha512-2vTpXAc60qE7UNY0k0i7ty7sbZXLkOXivxNN7RRz1+G9STzPCfoKrda8rFM5f/vRw6JmXu8qV5CTfAAQrnlmHg==
+
 webgl-constants@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/webgl-constants/-/webgl-constants-1.1.1.tgz#f9633ee87fea56647a60b9ce735cbdfb891c6855"

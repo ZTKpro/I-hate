@@ -60,7 +60,7 @@ const StyledTitle = styled.p`
 `;
 
 const StyledContent = styled.section`
-  min-width: 80%;
+  min-width: ${({ minWidth }) => minWidth || "80%"};
   position: relative;
   padding: ${({ padding }) => padding || "50px"};
   display: ${({ display }) => display || "block"};
@@ -157,7 +157,7 @@ export default function Content({
   minWidth,
 }) {
   return (
-    <StyledWrapper align={align} overflow={overflow} minWidth={minWidth}>
+    <StyledWrapper align={align} overflow={overflow}>
       <Bubble
         size={300}
         top="81vh"
@@ -180,7 +180,7 @@ export default function Content({
           ))}
         </StyledMenuItems>
       </StyledMenu>
-      <StyledContent display={display} padding={padding}>
+      <StyledContent display={display} padding={padding} minWidth={minWidth}>
         {children}
       </StyledContent>
       <StyledBlockMobile>
