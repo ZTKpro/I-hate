@@ -16,18 +16,14 @@ const StyledWrappr = styled.div`
   height: ${({ size }) => size}px;
   width: ${({ size }) => size}px;
   transition: ${({ transition }) => transition || "0.3s"};
-  opacity: ${({ animate }) => (animate ? 0.8 : 1)};
+  cursor: ${({ cursor }) => cursor || "default"};
+  opacity: ${({ opacity }) => opacity || "1"};
 
   display: flex;
   align-items: center;
   justify-content: center;
   background: -webkit-linear-gradient(#4ef9fe, #0696ff);
   border-radius: 50%;
-
-  &:hover {
-    cursor: ${({ animate }) => (animate ? "pointer" : "default")};
-    opacity: 1;
-  }
 `;
 
 const StyledInside = styled.div`
