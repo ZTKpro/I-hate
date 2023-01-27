@@ -60,7 +60,7 @@ const StyledTitle = styled.p`
 `;
 
 const StyledContent = styled.section`
-  min-width: 100%;
+  min-width: 80%;
   position: relative;
   padding: ${({ padding }) => padding || "50px"};
   display: ${({ display }) => display || "block"};
