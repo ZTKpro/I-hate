@@ -14,6 +14,10 @@ const MenuItems = [
         title: "Classifier",
         url: "https://classifier-js-ds.netlify.app",
       },
+      {
+        title: "Motion Detection",
+        url: "https://motion-detection-ds.netlify.app",
+      },
     ],
   },
   {
@@ -44,15 +48,6 @@ const MenuItems = [
       {
         title: "Cheat sheet",
         url: "/for-me/cheat-sheet",
-      },
-    ],
-  },
-  {
-    title: "Another",
-    items: [
-      {
-        title: "Motion Detection",
-        url: "https://motion-detection-ds.netlify.app",
       },
     ],
   },

@@ -30,11 +30,7 @@ Lubię pracować w zespołach i potrafię dostosować się do różnych sytuacji
 
 Wierzę, że mogę być wartościowym członkiem Twojego zespołu i przyczynić się do osiągnięcia wspólnych celów.
 
-Zachęcam do zapoznania się z moimi profilami na LinkedIn i GitHub:
-- linkedin.com/in/dszmurlo
-- github.com/ZTKpro
-
-oraz z moimi ostatnimi projektami na stronie internetowej: 
+Zachęcam z z moimi ostatnimi projektami na stronie internetowej:
 https://ds-code.netlify.app
 
 Chętnie odpowiem na wszelkie pytania podczas rozmowy kwalifikacyjnej i przedstawię swoje kwalifikacje

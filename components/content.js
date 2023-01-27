@@ -159,7 +159,7 @@ export default function Content({
       <Bubble
         size={300}
         top="81vh"
-        left="-150px"
+        left="-240px"
         position="absolute"
         zIndex="6"
       />
