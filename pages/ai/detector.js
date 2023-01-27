@@ -63,7 +63,7 @@ const TargetBox = styled.div`
   }
 `;
 
-export default function ObjectDetector(props) {
+export default function ObjectDetector() {
   const fileInputRef = useRef();
   const imageRef = useRef();
   const [imgData, setImgData] = useState(null);

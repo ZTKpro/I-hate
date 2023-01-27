@@ -60,6 +60,7 @@ const StyledTitle = styled.p`
 `;
 
 const StyledContent = styled.section`
+  min-width: 100%;
   position: relative;
   padding: ${({ padding }) => padding || "50px"};
   display: ${({ display }) => display || "block"};
@@ -153,9 +154,10 @@ export default function Content({
   padding,
   overflow,
   display,
+  minWidth,
 }) {
   return (
-    <StyledWrapper align={align} overflow={overflow}>
+    <StyledWrapper align={align} overflow={overflow} minWidth={minWidth}>
       <Bubble
         size={300}
         top="81vh"

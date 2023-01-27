@@ -7,6 +7,10 @@ const MenuItems = [
         url: "/ai/detector",
       },
       {
+        title: "Voice Assistant",
+        url: "/ai/voice-assistant",
+      },
+      {
         title: "Car neural network",
         url: "https://car-network.netlify.app",
       },
