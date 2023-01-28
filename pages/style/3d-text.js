@@ -5,6 +5,7 @@ import Content from "../../components/content";
 const spanShadowColor = "#016194";
 
 const Dtitle = styled.p`
+  cursor: pointer;
   top: 30%;
   font-size: 80px;
   position: absolute;
@@ -24,6 +25,12 @@ const Dtitle = styled.p`
       1px 7px 1px ${spanShadowColor}, 1px 8px 1px ${spanShadowColor},
       1px 9px 1px ${spanShadowColor}, 1px 10px 1px ${spanShadowColor};
   }
+  &:hover {
+    text-shadow: none;
+    span {
+      text-shadow: none;
+    }
+  }
 `;
 
 const Ddesc = styled.p`
@@ -35,6 +42,11 @@ const Ddesc = styled.p`
   text-align: center;
   text-shadow: 1px 1px 1px #919191, 1px 2px 1px #919191, 1px 3px 1px #919191,
     1px 4px 1px #919191, 1px 5px 1px #919191, 1px 6px 1px #919191;
+
+  cursor: pointer;
+  &:hover {
+    text-shadow: none;
+  }
 `;
 
 export default function text() {

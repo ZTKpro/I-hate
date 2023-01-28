@@ -16,6 +16,7 @@ const StyledTitle = styled.h4`
   font-size: 40px;
   top: ${({ top }) => top || "0"};
   left: ${({ left }) => left || "0"};
+  transform: translate(-50%, -50%);
 `;
 
 const StyledText = styled.p`
@@ -25,6 +26,7 @@ const StyledText = styled.p`
   font-size: 25px;
   top: ${({ top }) => top || "0"};
   left: ${({ left }) => left || "0"};
+  transform: translate(-50%, -50%);
 `;
 
 export default function Parrallax() {
@@ -74,17 +76,12 @@ export default function Parrallax() {
     <Content padding="0 0 0 10px">
       <StyledHeight>
         <StyledTitle
-          {...parallaxEffect({ top: 1200, left: -200 }, "horizontal", 0.8, 500)}
+          {...parallaxEffect({ top: 1450, left: 0 }, "horizontal", 0.4, 900)}
         >
           Parallax
         </StyledTitle>
         <StyledText
-          {...parallaxEffect(
-            { top: 1300, left: 1200 },
-            "horizontal",
-            -0.8,
-            300
-          )}
+          {...parallaxEffect({ top: 1600, left: 1500 }, "horizontal", -1, 910)}
         >
           Parallax is a displacement or difference in the apparent position of
           an object viewed along two different lines of sight and is measured by
@@ -94,20 +91,20 @@ export default function Parrallax() {
           size={200}
           position="absolute"
           transition="1.5s"
-          {...parallaxEffect({ top: 140, left: 500 }, "horizontal", 0.5)}
+          {...parallaxEffect({ top: 140, left: 900 }, "horizontal", 0.5)}
         />
         <Bubble
           size={200}
           position="absolute"
           transition="1.5s"
-          {...parallaxEffect({ top: 390, left: 500 }, "vertical", 1.3, 900)}
+          {...parallaxEffect({ top: 390, left: 900 }, "vertical", 1, 1600)}
           inside
         />
         <Bubble
           size={200}
           position="absolute"
           transition="1.5s"
-          {...parallaxEffect({ top: 630, left: 500 }, "horizontal", -0.5)}
+          {...parallaxEffect({ top: 630, left: 900 }, "horizontal", -0.5)}
         />
       </StyledHeight>
     </Content>

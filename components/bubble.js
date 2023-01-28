@@ -1,14 +1,6 @@
 import styled, { keyframes } from "styled-components";
 
-const fade = keyframes`
-  to {
-    transform: -webkit-linear-gradient(#0696ff, #4ef9fe);
-    rotate: (360deg);
-    opacity: 0.9;
-  }
-`;
-
-const StyledWrappr = styled.div`
+const StyledWrapper = styled.div`
   z-index: ${({ zIndex }) => zIndex || "0"};
   position: ${({ position }) => position || "relative"};
   top: ${({ top }) => top || "0"};
@@ -18,6 +10,7 @@ const StyledWrappr = styled.div`
   transition: ${({ transition }) => transition || "0.3s"};
   cursor: ${({ cursor }) => cursor || "default"};
   opacity: ${({ opacity }) => opacity || "1"};
+  transform: translate(-50%, -50%);
 
   display: flex;
   align-items: center;
@@ -35,6 +28,6 @@ const StyledInside = styled.div`
 
 export default function Bubble(props) {
   return (
-    <StyledWrappr {...props}>{props.inside && <StyledInside />}</StyledWrappr>
+    <StyledWrapper {...props}>{props.inside && <StyledInside />}</StyledWrapper>
   );
 }

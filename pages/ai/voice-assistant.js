@@ -8,8 +8,9 @@ import Bubble from "../../components/bubble";
 const StyledInfo = styled.p`
   position: absolute;
   top: 60%;
-  left: 51%;
+  left: 50%;
   font-size: 28px;
+  transform: translate(-50%, -50%);
 `;
 
 export default function VoiceAssistant() {
@@ -19,10 +20,10 @@ export default function VoiceAssistant() {
   const [info, setInfo] = useState("");
 
   return (
-    <Content overflow="hidden" minWidth="65%">
+    <Content overflow="hidden" padding="0">
       <Bubble
-        size={150}
-        top="38%"
+        size={160}
+        top="45%"
         left="50%"
         cursor="pointer"
         onMouseEnter={() => setOpacityAssistent(1)}

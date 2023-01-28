@@ -12,6 +12,7 @@ const StyledWrapper = styled.main`
   overflow-x: hidden;
   position: relative;
   min-height: 100vh;
+  height: 100%;
   width: 100vw;
   display: flex;
   overflow-y: ${({ overflow }) => overflow || "auto"};
@@ -19,6 +20,9 @@ const StyledWrapper = styled.main`
 `;
 
 const StyledMenu = styled.nav`
+  position: fixed;
+  top: 0;
+  left: 0;
   z-index: 5;
   background-color: black;
   min-height: 100%;
@@ -62,9 +66,9 @@ const StyledTitle = styled.p`
 const StyledContent = styled.section`
   background-color: ${({ backgroundColor }) =>
     backgroundColor || "transparent"};
-  min-width: ${({ minWidth }) => minWidth || "80%"};
+  min-width: ${({ minWidth }) => minWidth || "100vw"};
   position: relative;
-  padding: ${({ padding }) => padding || "50px"};
+  padding: ${({ padding }) => padding || "50px 0 50px 350px"};
   display: ${({ display }) => display || "block"};
 `;
 
@@ -161,14 +165,8 @@ export default function Content({
 }) {
   return (
     <StyledWrapper align={align} overflow={overflow}>
-      <Bubble
-        size={300}
-        top="81vh"
-        left="-240px"
-        position="absolute"
-        zIndex="6"
-      />
-      <Bubble size={800} top="58vh" left="81vw" position="absolute" />
+      <Bubble size={300} top="100%" left="-5%" position="absolute" zIndex="6" />
+      <Bubble size={800} top="100%" left="100%" position="absolute" />
       <StyledMenu>
         <StyledAboutMe>
           <StyledImage src={Logo} alt="logo" />
