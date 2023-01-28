@@ -22,14 +22,27 @@ export default function VoiceAssistant() {
   const [info, setInfo] = useState("");
 
   const [model, setModel] = useState(null);
-  const [action, setAction] = useState(null);
   const [labels, setLabels] = useState(null);
+
+  const argMax = (arr) => {
+    return arr.map((x, i) => [x, i]).reduce((r, a) => (a[0] > r[0] ? a : r))[1];
+  };
 
   const loadModel = async () => {
     const recognizer = await speech.create("BROWSER_FFT");
     await recognizer.ensureModelLoaded();
     setModel(recognizer);
     setLabels(recognizer.wordLabels());
+  };
+
+  const recognizeCommand = async () => {
+    model?.listen(
+      (result) => {
+        setInfo(labels[argMax(Object.values(result.scores))]);
+      },
+      { includeSpectrogram: true, probabilityThreshold: 0.9 }
+    );
+    setTimeout(() => model?.stopListening(), 10e3);
   };
 
   useEffect(() => {
@@ -46,7 +59,10 @@ export default function VoiceAssistant() {
         onMouseEnter={() => setOpacityAssistent(1)}
         onMouseLeave={() => setOpacityAssistent(defaultOpacity)}
         onHover={() => setOpacityAssistent(1)}
-        onClick={() => setInfo("Listening...")}
+        onClick={() => {
+          setInfo("Listening...");
+          recognizeCommand();
+        }}
         opacity={opacityAssistent}
       />
       <StyledInfo>{info !== "" && info}</StyledInfo>
