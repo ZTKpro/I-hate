@@ -29,6 +29,7 @@ ChartJS.register(
 
 import Content from "../../components/content";
 import Tile from "../../components/tile";
+import Info from "../../components/info";
 import { en, pl, link, git } from "../../components/data/textToCopy";
 import { currencyPair } from "../../components/data/currencyPair";
 
@@ -43,19 +44,6 @@ const StyledH2 = styled.h2`
 
 const StyledCopy = styled.p`
   cursor: pointer;
-  &:hover {
-    color: #1aaffc;
-  }
-`;
-
-const StyledInfo = styled.div`
-  z-index: 10;
-  position: absolute;
-  display: ${({ isShow }) => (isShow ? "block" : "none")};
-  left: 50%;
-  top: 1%;
-  cursor: pointer;
-  transform: translateX(-50%);
   &:hover {
     color: #1aaffc;
   }
@@ -128,7 +116,7 @@ export default function CheatSheet() {
   const toDoInput = useRef(null);
   const [toDoList, setToDoList] = useState(["."]);
 
-  const [info, setInfo] = useState(null);
+  const [info, setInfo] = useState("");
 
   const addToDo = () => {
     if (toDoInput.current.value !== "") {
@@ -224,9 +212,9 @@ export default function CheatSheet() {
 
   return (
     <Content overflow="hidden">
-      <StyledInfo isShow={info !== null} onClick={() => setInfo(null)}>
-        <Tile>{info}</Tile>
-      </StyledInfo>
+      <Info isShow={info !== ""} onClick={() => setInfo("")}>
+        {info}
+      </Info>
       <StyledH2>Forex</StyledH2>
       <StyledRow>
         <Tile gap="15px" minHeight="250px">
