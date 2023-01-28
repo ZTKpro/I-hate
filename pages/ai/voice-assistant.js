@@ -1,4 +1,6 @@
 import React, { useRef, useState } from "react";
+import * as tfjs from "@tensorflow/tfjs";
+import * as speech from "@tensorflow-models/speech-commands";
 
 import styled from "styled-components";
 
