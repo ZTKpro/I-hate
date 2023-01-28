@@ -5,6 +5,8 @@ import * as speech from "@tensorflow-models/speech-commands";
 import styled from "styled-components";
 
 import Content from "../../components/content";
+import Info from "../../components/info";
+import Tile from "../../components/tile";
 import Bubble from "../../components/bubble";
 
 const StyledInfo = styled.p`
@@ -30,7 +32,9 @@ export default function VoiceAssistant() {
 
   const loadModel = async () => {
     const recognizer = await speech.create("BROWSER_FFT");
+    console.log("Model Loaded");
     await recognizer.ensureModelLoaded();
+    console.log(recognizer.wordLabels());
     setModel(recognizer);
     setLabels(recognizer.wordLabels());
   };
@@ -51,19 +55,29 @@ export default function VoiceAssistant() {
 
   return (
     <Content overflow="hidden" padding="0">
+      {labels && (
+        <Info isShow={labels !== ""} left="22%">
+          <Tile flexDirection="column">
+            <h3>Commands:</h3>
+            <br />
+            {labels.map((label, index) => (
+              <p key={index}>{label}</p>
+            ))}
+          </Tile>
+        </Info>
+      )}
       <Bubble
         size={160}
         top="45%"
         left="50%"
         cursor="pointer"
-        onMouseEnter={() => setOpacityAssistent(1)}
-        onMouseLeave={() => setOpacityAssistent(defaultOpacity)}
+        opacity={opacityAssistent}
         onHover={() => setOpacityAssistent(1)}
         onClick={() => {
           setInfo("Listening...");
           recognizeCommand();
+          setOpacityAssistent(1);
         }}
-        opacity={opacityAssistent}
       />
       <StyledInfo>{info !== "" && info}</StyledInfo>
     </Content>

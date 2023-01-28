@@ -4,6 +4,7 @@ import Tile from "./tile";
 const StyledInfo = styled.div`
   z-index: 10;
   position: absolute;
+  width: ${({ width }) => width || "auto"};
   display: ${({ isShow }) => (isShow ? "block" : "none")};
   left: ${({ left }) => left || "50%"};
   top: ${({ top }) => top || "1%"};
@@ -15,9 +16,5 @@ const StyledInfo = styled.div`
 `;
 
 export default function Info(props) {
-  return (
-    <StyledInfo {...props}>
-      <Tile>{props.children}</Tile>
-    </StyledInfo>
-  );
+  return <StyledInfo {...props}>{props.children}</StyledInfo>;
 }

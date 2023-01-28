@@ -213,7 +213,7 @@ export default function CheatSheet() {
   return (
     <Content overflow="hidden">
       <Info isShow={info !== ""} onClick={() => setInfo("")}>
-        {info}
+        <Tile>{info}</Tile>
       </Info>
       <StyledH2>Forex</StyledH2>
       <StyledRow>
