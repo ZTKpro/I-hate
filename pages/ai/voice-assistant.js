@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import * as tfjs from "@tensorflow/tfjs";
 import * as speech from "@tensorflow-models/speech-commands";
 
@@ -20,6 +20,21 @@ export default function VoiceAssistant() {
 
   const [opacityAssistent, setOpacityAssistent] = useState(defaultOpacity);
   const [info, setInfo] = useState("");
+
+  const [model, setModel] = useState(null);
+  const [action, setAction] = useState(null);
+  const [labels, setLabels] = useState(null);
+
+  const loadModel = async () => {
+    const recognizer = await speech.create("BROWSER_FFT");
+    await recognizer.ensureModelLoaded();
+    setModel(recognizer);
+    setLabels(recognizer.wordLabels());
+  };
+
+  useEffect(() => {
+    loadModel();
+  }, []);
 
   return (
     <Content overflow="hidden" padding="0">
