@@ -31,6 +31,10 @@ const MenuItems = [
         title: "Shoe configurator",
         url: "https:/ds-3d-configurator.netlify.app",
       },
+      {
+        title: "Metaverse",
+        url: "https:/ds-metaverse.netlify.app",
+      },
     ],
   },
   {

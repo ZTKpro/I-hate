@@ -44,7 +44,7 @@ export default function VoiceAssistant() {
       (result) => {
         setInfo(labels[argMax(Object.values(result.scores))]);
       },
-      { includeSpectrogram: true, probabilityThreshold: 0.9 }
+      { includeSpectrogram: true, probabilityThreshold: 0.75 }
     );
     setTimeout(() => model?.stopListening(), 10e3);
   };
