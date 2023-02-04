@@ -317,10 +317,16 @@ export default function CheatSheet() {
                     "https://xstation5.xtb.com/?branch=pl#/real/loggedIn",
                     "_blank"
                   );
-                  window.open(
-                    "https://www.valutrades.com/en/blog/common-chart-patterns-a-forex-cheat-sheet",
-                    "_blank"
-                  );
+                  {
+                    currencyPair.map((item) =>
+                      window.open(
+                        `https://pl.tradingview.com/chart/tswqhFJr/?symbol=${stringQuotes(
+                          item
+                        )}`,
+                        "_blank"
+                      )
+                    );
+                  }
                 }
               }}
             >
