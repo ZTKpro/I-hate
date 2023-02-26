@@ -30,7 +30,7 @@ ChartJS.register(
 import Content from "../../components/content";
 import Tile from "../../components/tile";
 import Info from "../../components/info";
-import { en, pl, link, git } from "../../components/data/textToCopy";
+import { en, pl, link, git, CS } from "../../components/data/textToCopy";
 import { currencyPair } from "../../components/data/currencyPair";
 
 const StyledRow = styled.div`
