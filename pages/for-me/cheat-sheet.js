@@ -284,6 +284,9 @@ export default function CheatSheet() {
           <Tile padding="12px">
             <StyledCopy onClick={() => copyToClipboard(git)}>Git</StyledCopy>
           </Tile>
+          <Tile padding="12px">
+            <StyledCopy onClick={() => copyToClipboard(CS)}>CS</StyledCopy>
+          </Tile>
         </Tile>
         <Tile padding="14px">
           <Tile padding="10px">

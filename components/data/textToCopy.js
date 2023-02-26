@@ -42,6 +42,13 @@ Pozdrawiam,
 Damian Szmurło
 `;
 
+export const CS = `
+Jestem doświadczonym programistą z ponad 4-letnim stażem pracy w branży. W mojej pracy stawiam na rozwijanie wysokiej jakości oprogramowania, które spełnia oczekiwania użytkowników i zapewnia doskonałą funkcjonalność.
+
+Jednym z moich zainteresowań poza pracą jest cyberbezpieczeństwo. Chętnie rozwijam swoją wiedzę i umiejętności w tej dziedzinie, uczestnicząc w szkoleniach i czytając publikacje na ten temat. Przeszedłem kilka wartościowych kursów, takich jak X Hacker oraz Hack The Box, które pomogły mi rozwinąć moje umiejętności i zrozumienie w dziedzinie bezpieczeństwa IT. Wiem, że to nie tylko ważna kwestia dla branży IT, ale również dla całego świata, ponieważ cyberprzestępczość może mieć poważne konsekwencje dla ludzi i organizacji.
+
+Dlatego też, chciałbym zgłosić swoją kandydaturę do pracy w Państwa firmie, gdzie mam nadzieję na rozwijanie swojej pasji i wiedzy w zakresie cyberbezpieczeństwa. Jestem przekonany, że moje doświadczenie w programowaniu, połączone z zainteresowaniem bezpieczeństwem w sieci, może przynieść pozytywny wpływ na rozwój Państwa biznesu.`;
+
 export const link = `linkedin.com/in/dszmurlo/`;
 
 export const git = `github.com/ZTKpro`;
