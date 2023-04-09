@@ -44,6 +44,10 @@ const MenuItems = [
         title: "Wallet",
         url: "https://github.com/ZTKpro/BlockChain",
       },
+      {
+        title: "Solidity",
+        url: "https://github.com/ZTKpro/Solidity",
+      },
     ],
   },
   {
