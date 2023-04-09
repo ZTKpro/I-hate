@@ -48,3 +48,7 @@ crypto: kryptoporfel
 AI: Emocji Objektów
 
 Gry: Snake Kólko krzyzyk Samochodzik
+
+
+![image](https://user-images.githubusercontent.com/48288156/228499797-ecb58979-6f9c-4743-81e3-58892bd45b1e.png)
+
