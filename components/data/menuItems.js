@@ -51,19 +51,6 @@ const MenuItems = [
     ],
   },
   {
-    title: "Style",
-    items: [
-      {
-        title: "Parallax",
-        url: "/style/parallax",
-      },
-      {
-        title: "3D text",
-        url: "/style/3d-text",
-      },
-    ],
-  },
-  {
     title: "For me",
     items: [
       {
