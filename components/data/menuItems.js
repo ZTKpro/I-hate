@@ -70,6 +70,10 @@ const MenuItems = [
         title: "Cheat sheet",
         url: "/for-me/cheat-sheet",
       },
+      {
+        title: "Item manager",
+        url: "/for-me/lexury",
+      },
     ],
   },
 ];
