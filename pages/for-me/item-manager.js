@@ -175,7 +175,11 @@ function ProductList() {
             <ProductTitle onClick={() => deleteProduct(product.name)}>
               {product.name}
             </ProductTitle>
-            <ProductLink> {product.link}</ProductLink>
+            <ProductLinkColor>
+              <a href={product.link} target="_blank" rel="noreferrer">
+                From
+              </a>
+            </ProductLinkColor>
             <Cost>
               <h4>Cena:</h4>
               {product.price} zł

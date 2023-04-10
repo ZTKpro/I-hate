@@ -72,7 +72,7 @@ const MenuItems = [
       },
       {
         title: "Item manager",
-        url: "/for-me/lexury",
+        url: "/for-me/item-manager",
       },
     ],
   },
